@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --- 1. GLOBAL DEFAULTS & SCROLLBAR --- */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* NUCLEAR OPTION: Override Swiper's Internal Color Variables Globally */
+:root {
+  --swiper-theme-color: #06b6d4 !important;
+  --swiper-navigation-color: #06b6d4 !important;
+  --swiper-pagination-color: #06b6d4 !important;
+}
+
+/* Custom Text Selection (Cyan) */
+::selection {
+  background-color: #06b6d4; /* Cyan-500 */
+  color: white;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #06b6d4; /* Cyan Hover */
+}
+
+/* --- 2. SWIPER ARROW CONFIGURATION --- */
+.swiper {
+  overflow: visible !important;
+}
+
+/* Position arrows outside the container */
+.swiper-button-prev {
+  left: -60px !important;
+}
+
+.swiper-button-next {
+  right: -60px !important;
+}
+
+/* Base Arrow Styling (Cyan Text, Dark BG) */
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: rgba(20, 20, 20, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #06b6d4 !important; /* Cyan Icon */
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50% !important;
+  z-index: 100 !important;
+  transition: all 0.3s ease !important;
+  
+  /* DEFAULT: HIDDEN ON MOBILE (Instagram Style) */
+  display: none !important; 
+}
+
+/* ON DESKTOP: SHOW ARROWS (Screens wider than 768px) */
+@media (min-width: 768px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Hide disabled arrows */
+.swiper-button-disabled {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+/* HOVER STATE: Cyan BG, White Text, Cyan Glow */
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: #06b6d4 !important; /* Cyan Background */
+  color: white !important;
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.4); /* Cyan Glow */
+}
+
+/* Ensure the inner arrow icon inherits the correct color */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 18px !important;
+  font-weight: bold !important;
+  color: inherit !important; /* Inherits from parent (Cyan or White) */
+}
+
+/* --- 3. SWIPER PAGINATION (DOTS) --- */
+.swiper-pagination-bullet {
+  background: white !important;
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+  background: #06b6d4 !important; /* Cyan Active Dot */
+  opacity: 1;
+}
+
+/* --- 4. UTILITY FILTERS --- */
+
+/* Turns a black image/icon into White */
+.filter-white {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+}
+
+/* Turns black icons to Cyber Cyan (#06b6d4) */
+.filter-cyan {
+  filter: invert(56%) sepia(39%) saturate(5436%) hue-rotate(152deg) brightness(101%) contrast(98%);
+}
+
+
+/* --- SWIPER PAGINATION FIX --- */
+
+/* 1. Force the Swiper container to have a big gap at the bottom */
+.swiper {
+  padding-bottom: 60px !important; /* Creates a dedicated lane for dots */
+}
+
+/* 2. Position the dots row at the very bottom of that gap */
+.swiper-pagination {
+  bottom: 0px !important; 
+  top: auto !important;
+  padding-bottom: 10px; /* Fine-tune vertical position */
+}
+
+/* 3. Ensure dots are clickable and on top */
+.swiper-pagination-bullet {
+  cursor: pointer;
+  z-index: 50;
+}
